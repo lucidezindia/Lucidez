@@ -1,0 +1,160 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    Layout = null;
+    var title = ViewData["Title"] ?? "Lucidez";
+    var description = ViewData["Description"] ?? "Lucidez — IT & Finance studio building secure software, accounting services and products Wannabe & LuPoll.";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@title - Lucidez</title>
+    <meta name="description" content="@description" />
+    <meta name="theme-color" content="#001518" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/lucidez.css" asp-append-version="true" />
+</head>
+<body class="lucidez-body">
+
+    <!-- particle canvas -->
+    <canvas id="particles" aria-hidden="true"></canvas>
+
+    <!-- HEADER -->
+    <header class="site-header" role="banner">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <a asp-controller="Home" asp-action="Index" class="brand d-flex align-items-center text-decoration-none">
+                <div class="logo-sm"><img style="width:40px;height:40px;" src="~/images/logo.png" /></div>
+                <div class="ms-2">
+                    <div class="title">Lucidez</div>
+                    <div class="muted small">The Power of Thoughts</div>
+                </div>
+            </a>
+
+            <nav class="main-nav d-none d-lg-flex align-items-center">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Home" asp-action="Products">Products</a>
+                <a asp-controller="Home" asp-action="Services">Services</a>
+                <a asp-controller="Home" asp-action="AccountingIndia">Accounting (IN)</a>
+                <a asp-controller="Home" asp-action="AccountingUS">Accounting (US)</a>
+                <a asp-controller="Home" asp-action="About">About</a>
+                <a asp-controller="Home" asp-action="Contact" class="cta-header">Contact</a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form method="post" asp-controller="Account" asp-action="Logout" class="d-inline ms-3">
+                        <button class="btn btn-sm btn-ghost">Logout</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="ms-3">Admin</a>
+                }
+            </nav>
+
+            <div class="d-lg-none">
+                <button id="mobileMenuBtn" class="btn btn-sm btn-outline-light">Menu</button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu d-lg-none">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Home" asp-action="Products">Products</a>
+            <a asp-controller="Home" asp-action="Services">Services</a>
+            <a asp-controller="Home" asp-action="AccountingIndia">Accounting (IN)</a>
+            <a asp-controller="Home" asp-action="AccountingUS">Accounting (US)</a>
+            <a asp-controller="Home" asp-action="About">About</a>
+            <a asp-controller="Home" asp-action="Contact">Contact</a>
+        </div>
+    </header>
+
+    <main role="main" class="site-main">
+        @RenderBody()
+    </main>
+
+    <!-- MEGA FOOTER -->
+    <footer class="site-footer mega-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="logo-sm">
+                            <img style="width:40px;height:40px;" src="~/images/logo.png" />
+                        </div>
+                        <div>
+                            <div class="fw-bold">Lucidez</div>
+                            <div class="muted small">IT & Finance Studio</div>
+                            <p class="muted mt-2">We build enterprise-grade software, fintech integrations and provide accounting operations across India and the US. Flagship products: Wannabe & LuPoll.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <h6 class="footer-head">Products</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/Home/Wannabe" class="muted">Wannabe</a></li>
+                        <li><a href="/Home/LuPoll" class="muted">LuPoll</a></li>
+                        <li><a href="/Home/Products" class="muted">All Products</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-2">
+                    <h6 class="footer-head">Services</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/Home/Services" class="muted">IT Services</a></li>
+                        <li><a href="/Home/AccountingIndia" class="muted">Accounting (India)</a></li>
+                        <li><a href="/Home/AccountingUS" class="muted">Accounting (US)</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-2">
+                    <h6 class="footer-head">Resources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/blog" class="muted">Blog</a></li>
+                        <li><a href="/case-studies" class="muted">Case Studies</a></li>
+                        <li><a href="/support" class="muted">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-2">
+                    <h6 class="footer-head">Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/Home/About" class="muted">About</a></li>
+                        <li><a href="/Home/Contact" class="muted">Contact</a></li>
+                        <li><a href="Home/privacy" class="muted">Privacy</a></li>
+                        <li><a href="Home/terms" class="muted">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(0,255,255,0.04); margin:24px 0;" />
+
+            <div class="row align-items-center">
+                <div class="col-md-6 muted">© @DateTime.UtcNow.Year Lucidez — All rights reserved.</div>
+                <div class="col-md-6 text-md-end">
+                    <form method="post" asp-controller="Home" asp-action="Subscribe" class="d-flex justify-content-end gap-2">
+                        <input type="email" name="email" required class="form-control form-control-sm" placeholder="Subscribe to our newsletter" style="max-width:320px; display:inline-block" />
+                        <button class="btn btn-sm btn-primary" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top hidden" title="Back to top">▲</button>
+
+    @await Html.PartialAsync("_ChatPartial")
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script src="~/js/lucidez-home.js" asp-append-version="true"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

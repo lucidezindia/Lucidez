@@ -1,0 +1,55 @@
+﻿@model Lucidez.Controllers.LoginViewModel
+@{
+    ViewData["Title"] = "Admin Login";
+    Layout = "_Layout";
+}
+
+<section class="login-section">
+    <div class="login-wrapper">
+
+        <div class="login-card">
+            <div class="text-center mb-4">
+                <div class="login-logo">
+                    <img style="width:40px;height:40px;" src="~/images/logo.png" />
+                </div>
+                <h2 class="gradient-text mt-3">Admin Login</h2>
+                <p class="muted small">Secure access for Lucidez administrators</p>
+            </div>
+
+            <form asp-action="Login" method="post" novalidate>
+
+                <div class="mb-3">
+                    <label class="form-label muted">Email Address</label>
+                    <input asp-for="Email" class="form-control login-input" placeholder="admin@lucidez.com" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label muted">Password</label>
+                    <input asp-for="Password" type="password" class="form-control login-input" placeholder="••••••••" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label class="form-check-label muted">Remember me</label>
+                </div>
+
+                <button class="btn primary w-100 mt-2">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <small class="muted">
+                    🔒 Authorized personnel only
+                </small>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

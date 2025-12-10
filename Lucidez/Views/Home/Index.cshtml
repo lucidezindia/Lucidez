@@ -1,0 +1,244 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    ViewData["Description"] = "Lucidez — IT Engineering & Global Accounting Studio delivering enterprise-grade software, fintech systems, and US/India accounting operations. Creators of Wannabe (2026) and LuPoll.";
+    Layout = "_Layout";
+}
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-inner container">
+
+        <!-- LEFT TEXT -->
+        <div class="hero-copy">
+            <div class="hero-kicker">INNOVATION • ENGINEERING • FINANCE</div>
+
+            <h1>
+                We Build <span class="gradient-text">Technology & Financial Systems</span>
+                That Scale With You
+            </h1>
+
+            <p class="lead">
+                Lucidez is a next-generation IT & Finance studio helping businesses transform with
+                enterprise software, AI-powered workflows, automation, and compliant accounting
+                operations across <strong>India</strong> and the <strong>United States</strong>.
+                <br /><br />
+                Our flagship products — <strong>Wannabe</strong> (social platform, launching 2026)
+                and <strong>LuPoll</strong> (real-time polling engine) — demonstrate our deep expertise
+                in high-performance system design.
+            </p>
+
+            <div class="hero-actions">
+                <a asp-controller="Home" asp-action="Products" class="btn primary">Explore Products</a>
+                <a asp-controller="Home" asp-action="Services" class="btn ghost">Our Solutions</a>
+            </div>
+
+            <div class="mt-3 d-flex align-items-center gap-3">
+                <div class="small muted">Trusted by teams in</div>
+                <div style="display:flex; gap:10px; align-items:center">
+                    <div class="partner-sq"></div>
+                    <div class="partner-sq"></div>
+                    <div class="muted small">Fintech • Media • Enterprise</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT VISUAL CARD -->
+        <aside class="hero-card" aria-hidden="true">
+            <div class="hero-logo transparent-logo">
+                <img class="logo-img" src="~/images/logo.png" alt="Lucidez Logo" />
+            </div>
+
+
+            <div class="stats d-flex gap-2 justify-content-center mt-2">
+                <div class="stat"><div class="fw-bold">12+</div><div class="muted small">Industries</div></div>
+                <div class="stat"><div class="fw-bold">50+</div><div class="muted small">Projects Delivered</div></div>
+                <div class="stat"><div class="fw-bold">2026</div><div class="muted small">Wannabe Launch</div></div>
+            </div>
+        </aside>
+
+    </div>
+</section>
+
+
+<!-- WHAT WE DO -->
+<section class="reveal">
+    <div class="container">
+        <div class="section-head">
+            <h2>What We Do</h2>
+            <p class="sub">
+                Lucidez combines deep engineering, modern design, and financial expertise to build
+                high-impact solutions for fast-growing businesses and global enterprises.
+            </p>
+        </div>
+
+        <div class="why-grid">
+
+            <article class="tilt-card">
+                <h3>Enterprise Software Engineering</h3>
+                <p class="muted">
+                    We build secure, scalable applications — SaaS platforms, ERP/CRM systems,
+                    custom business automation, API ecosystems, and cloud-native applications.
+                </p>
+                <a asp-action="Services" asp-controller="Home" class="btn ghost">Learn More</a>
+            </article>
+
+            <article class="tilt-card">
+                <h3>India & US Accounting Operations</h3>
+                <p class="muted">
+                    Complete bookkeeping, GST, payroll, compliance, and US accounting support including
+                    QuickBooks/Xero systems, reconciliation, and CFO-level reporting.
+                </p>
+                <a asp-action="AccountingIndia" asp-controller="Home" class="btn ghost">Accounting Services</a>
+            </article>
+
+            <article class="tilt-card">
+                <h3>Product Innovation & R&D</h3>
+                <p class="muted">
+                    From social platforms to real-time engines, we design high-performance systems
+                    that handle millions of users with precision & reliability.
+                </p>
+                <a asp-action="Products" asp-controller="Home" class="btn ghost">Our Products</a>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- PRODUCTS -->
+<section id="products" class="reveal">
+    <div class="container">
+        <div class="section-head">
+            <h2>Our Products</h2>
+            <p class="sub">Built with precision, designed for scale, trusted by creators and enterprises.</p>
+        </div>
+
+        <div class="why-grid">
+
+            <article class="tilt-card">
+                <h3>Wannabe</h3>
+                <p class="muted">
+                    A next-generation social platform merging reels, long-form video,
+                    live events, communities, and creator monetization — launching 2026.
+                </p>
+                <a asp-action="Wannabe" asp-controller="Home" class="btn ghost">Explore Wannabe</a>
+            </article>
+
+            <article class="tilt-card">
+                <h3>LuPoll</h3>
+                <p class="muted">
+                    Ultra-fast polling with sub-second analytics. Used for TV shows, events,
+                    elections, research, and enterprise feedback loops.
+                </p>
+                <a asp-action="LuPoll" asp-controller="Home" class="btn ghost">View LuPoll</a>
+            </article>
+
+            <article class="tilt-card">
+                <h3>Custom Integrations</h3>
+                <p class="muted">
+                    Payment systems, automation pipelines, AI recommendation engines,
+                    event systems, and end-to-end enterprise solutions.
+                </p>
+                <a asp-action="Services" asp-controller="Home" class="btn ghost">See Services</a>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- WHY BUSINESSES CHOOSE LUCIDEZ -->
+<section class="reveal">
+    <div class="container">
+        <div class="section-head">
+            <h2>Why Businesses Choose Lucidez</h2>
+            <p class="sub">We bring engineering discipline, financial reliability, and product strategy together.</p>
+        </div>
+
+        <div class="why-grid">
+
+            <div class="tilt-card">
+                <h4>Reliability at Scale</h4>
+                <p class="muted">Systems engineered to handle peak traffic, large datasets, and complex operations.</p>
+            </div>
+
+            <div class="tilt-card">
+                <h4>Finance-First Thinking</h4>
+                <p class="muted">Accounting + Engineering under one roof ensures accuracy, compliance, and efficiency.</p>
+            </div>
+
+            <div class="tilt-card">
+                <h4>End-to-End Support</h4>
+                <p class="muted">Product strategy → Development → Infra → Accounting → Growth analytics.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- CASE STUDIES -->
+<section id="case-studies" class="reveal">
+    <div class="container">
+        <div class="section-head">
+            <h2>Case Studies</h2>
+            <p class="sub">A glimpse of our engineering & financial impact.</p>
+        </div>
+
+        <div class="row gy-3">
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h5>Real-time TV Polling</h5>
+                    <p class="muted">LuPoll handled 120k+ concurrent votes with sub-second latency for a prime-time broadcast.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h5>Fintech Reconciliation Engine</h5>
+                    <p class="muted">We reduced reconciliation time by 72% for a payments network through automation pipelines.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA BLOCK -->
+<section class="reveal">
+    <div class="container">
+        <div class="cta-block">
+            <h3>Ready to Build the Future With Us?</h3>
+            <p class="muted">
+                Whether you're launching a product, modernizing finance operations, or exploring new ideas —
+                Lucidez is your strategic technology & accounting partner.
+            </p>
+
+            <div class="d-flex gap-3 flex-wrap">
+                <a asp-controller="Home" asp-action="Contact" class="btn primary">Speak to Our Team</a>
+
+                <form method="post" asp-controller="Home" asp-action="Subscribe" style="display:inline-flex; gap:8px;">
+                    <input type="email" name="email" required class="form-control" placeholder="Your email" />
+                    <button class="btn ghost" type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="reveal">
+    <div class="container">
+        <div class="section-head">
+            <h2>FAQ</h2>
+            <p class="sub">Quick answers to common questions.</p>
+        </div>
+
+        <details class="muted"><summary style="font-weight:800">When will Wannabe launch?</summary><div class="pt-2">Public launch is scheduled for 2026. Join our early-access program.</div></details>
+
+        <details class="muted"><summary style="font-weight:800">Do you support US accounting remotely?</summary><div class="pt-2">Yes — our US team manages bookkeeping, reconciliation, payroll, and tax preparation.</div></details>
+
+        <details class="muted"><summary style="font-weight:800">Do you build custom enterprise software?</summary><div class="pt-2">Absolutely — ERP, fintech systems, social platforms, APIs, automation and more.</div></details>
+    </div>
+</section>

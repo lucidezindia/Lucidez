@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "IT Services";
+    ViewData["Description"] = "Lucidez IT Services: full-stack development, cloud engineering, AI/ML, DevOps, cybersecurity, API integrations, ERP/CRM and enterprise software solutions.";
+    Layout = "_Layout";
+}
+
+<!-- HERO SECTION WITH VIDEO -->
+<section class="hero hero-it">
+    <video autoplay muted loop playsinline preload="auto" class="hero-video">
+        <source src="/video/back-loop.webm" type="video/webm" />
+        <source src="/video/back.mp4" type="video/mp4" />
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content container text-center">
+        <h1 class="gradient-text">IT Services</h1>
+        <p class="lead">
+            Engineering secure, scalable and enterprise-grade digital solutions for global businesses.
+        </p>
+    </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section class="reveal">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="gradient-text">What We Offer</h2>
+            <p class="sub">
+                From full-stack engineering to AI automation and cloud infrastructure — Lucidez builds robust technology
+                for startups, enterprises and global clients.
+            </p>
+        </div>
+
+        <div class="why-grid">
+
+            <!-- Full Stack -->
+            <div class="tilt-card">
+                <h3 class="fw-bold">Full-Stack Development</h3>
+                <p class="muted">
+                    High-performance web & mobile apps, SaaS platforms, enterprise portals and custom business software.
+                </p>
+                <ul class="muted" style="line-height:1.8;">
+                    <li>Web apps (.NET, Node, React, Next.js)</li>
+                    <li>Mobile apps (Flutter / .NET MAUI)</li>
+                    <li>API-first architecture</li>
+                    <li>Microservices & modular systems</li>
+                </ul>
+            </div>
+
+            <!-- Cloud -->
+            <div class="tilt-card">
+                <h3 class="fw-bold">Cloud & DevOps</h3>
+                <p class="muted">End-to-end cloud architecture with automation and observability.</p>
+                <ul class="muted" style="line-height:1.8;">
+                    <li>AWS / Azure infrastructures</li>
+                    <li>CI/CD pipelines</li>
+                    <li>Containers: Docker & Kubernetes</li>
+                    <li>Monitoring, logging & SRE</li>
+                </ul>
+            </div>
+
+            <!-- AI -->
+            <div class="tilt-card">
+                <h3 class="fw-bold">AI / Machine Learning</h3>
+                <p class="muted">AI-powered features that accelerate business intelligence and automation.</p>
+                <ul class="muted" style="line-height:1.8;">
+                    <li>Recommendation systems</li>
+                    <li>OCR & document automation</li>
+                    <li>Predictive analytics</li>
+                    <li>AI chatbots & NLP processing</li>
+                </ul>
+            </div>
+
+            <!-- ERP/CRM -->
+            <div class="tilt-card">
+                <h3 class="fw-bold">ERP / CRM Solutions</h3>
+                <p class="muted">Custom ERP & CRM systems designed for operational efficiency.</p>
+                <ul class="muted" style="line-height:1.8;">
+                    <li>HRM, Payroll, Inventory systems</li>
+                    <li>Sales CRM, Ticketing systems</li>
+                    <li>Financial & MIS dashboards</li>
+                    <li>Custom workflow automation</li>
+                </ul>
+            </div>
+
+            <!-- Security -->
+            <div class="tilt-card">
+                <h3 class="fw-bold">Cybersecurity</h3>
+                <p class="muted">Secure your applications and digital assets with enterprise-grade protection.</p>
+                <ul class="muted" style="line-height:1.8;">
+                    <li>Security audits & penetration testing</li>
+                    <li>Identity & access control</li>
+                    <li>API & platform hardening</li>
+                    <li>24×7 monitoring</li>
+                </ul>
+            </div>
+
+            <!-- Integration -->
+            <div class="tilt-card">
+                <h3 class="fw-bold">API Integrations</h3>
+                <p class="muted">Seamless integration with internal or third-party platforms.</p>
+                <ul class="muted" style="line-height:1.8;">
+                    <li>Payment gateways</li>
+                    <li>SMS/Email systems</li>
+                    <li>Banking & fintech APIs</li>
+                    <li>Custom enterprise APIs</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="reveal">
+    <div class="container two-col">
+        <div class="text-block">
+            <h2 class="gradient-text">Our Technology Expertise</h2>
+            <p class="muted">
+                We engineer scalable systems using modern, battle-tested technologies across backend, frontend, mobile,
+                cloud and AI.
+            </p>
+            <a asp-controller="Home" asp-action="Contact" class="btn primary mt-3">Discuss Your Project</a>
+        </div>
+
+        <div class="card p-4">
+            <h4>Tech Stack</h4>
+            <ul class="muted">
+                <li>.NET, C#, Node.js</li>
+                <li>React, Next.js, Vue</li>
+                <li>Flutter, MAUI</li>
+                <li>SQL Server, PostgreSQL, MongoDB</li>
+                <li>Redis, RabbitMQ</li>
+                <li>AWS, Azure, Docker, Kubernetes</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-block reveal">
+    <h3>Need a custom software solution?</h3>
+    <p class="muted">We build secure, scalable and enterprise-grade platforms for global businesses.</p>
+    <a asp-controller="Home" asp-action="Contact" class="btn primary">Get a Quote</a>
+</section>

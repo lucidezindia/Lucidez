@@ -1,0 +1,30 @@
+﻿@* Views/Admin/_AdminSidebar.cshtml *@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<aside class="admin-sidebar">
+    <div class="admin-brand">
+        <div class="logo-sm small">L</div>
+        <div class="ms-2">
+            <div class="fw-bold">Lucidez</div>
+            <div class="muted small">Admin</div>
+        </div>
+    </div>
+
+    <nav class="admin-nav">
+        <a class="admin-nav-link" asp-controller="Admin" asp-action="Dashboard">Overview</a>
+        <a class="admin-nav-link" asp-controller="Admin" asp-action="Leads">Leads</a>
+        <a class="admin-nav-link" asp-controller="Admin" asp-action="Contacts">Contacts</a>
+        <a class="admin-nav-link" asp-controller="Admin" asp-action="Chats">Chats</a>
+        <a class="admin-nav-link" asp-controller="Home" asp-action="Index">View Site</a>
+    </nav>
+
+    <div class="admin-quick mt-auto">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <form method="post" asp-controller="Account" asp-action="Logout">
+                <button class="btn btn-sm btn-ghost w-100">Logout</button>
+            </form>
+        }
+    </div>
+</aside>

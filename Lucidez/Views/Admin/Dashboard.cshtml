@@ -1,0 +1,215 @@
+﻿@model List<Lucidez.Models.ChatMessage>
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    var leads = ViewBag.RecentLeads as List<Lucidez.Models.Lead>;
+    var contacts = ViewBag.RecentContacts as List<Lucidez.Models.ContactMessage>;
+
+    var labels = (List<string>)ViewBag.Labels;
+    var leadSeries = (List<int>)ViewBag.LeadSeries;
+    var contactSeries = (List<int>)ViewBag.ContactSeries;
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<div class="admin-layout">
+    @await Html.PartialAsync("_AdminSidebar")
+
+    <div class="admin-content">
+        <div class="admin-topbar d-flex justify-content-between align-items-center">
+            <h3>Overview</h3>
+            <div class="d-flex gap-3 align-items-center">
+                <div class="muted">Admin • @User.Identity.Name</div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row gx-3 gy-3 mb-4">
+            <div class="col-sm-6 col-md-3">
+                <div class="admin-card">
+                    <div class="admin-card-title">Total Leads</div>
+                    <div class="admin-card-value">@ViewBag.TotalLeads</div>
+                    <div class="admin-card-meta">@ViewBag.LeadsLast24h new in 24h</div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="admin-card">
+                    <div class="admin-card-title">Unread Inquiries</div>
+                    <div class="admin-card-value">@ViewBag.UnreadContacts</div>
+                    <div class="admin-card-meta">@ViewBag.ChatsLast24h chats in 24h</div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="admin-card">
+                    <div class="admin-card-title">Total Chats</div>
+                    <div class="admin-card-value">@ViewBag.TotalChats</div>
+                    <div class="admin-card-meta">Live via SignalR</div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="admin-card">
+                    <div class="admin-card-title">Recent Contacts</div>
+                    <div class="admin-card-value">@contacts?.Count()</div>
+                    <div class="admin-card-meta">Latest messages</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ApexCharts Section -->
+        <div class="row gx-3 gy-3">
+            <div class="col-lg-8">
+                <div class="card p-3">
+                    <h5>Activity (Last 7 Days)</h5>
+                    <div id="activityChart" style="height: 260px;"></div>
+                </div>
+
+                <div class="card p-3 mt-3">
+                    <h5>Recent Chats</h5>
+                    <div style="max-height:300px; overflow:auto;">
+                        @foreach (var c in Model)
+                        {
+                            <div class="border-bottom py-2">
+                                <strong>@c.Sender</strong>
+                                <small class="text-muted">@c.SentAt.ToLocalTime()</small>
+                                <div>@c.Message</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card p-3 mb-3">
+                    <h5>Latest Leads</h5>
+                    <ul class="list-unstyled">
+                        @foreach (var l in leads)
+                        {
+                            <li class="py-2 border-bottom">
+                                <div class="fw-bold">@l.Name</div>
+                                <div class="muted small">@l.Email • @l.Company</div>
+                                <div class="muted small">@l.CreatedAt.ToLocalTime()</div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="card p-3">
+                    <h5>Recent Contact Messages</h5>
+                    <div style="max-height:240px; overflow:auto;">
+                        @foreach (var m in contacts)
+                        {
+                            <div class="py-2 border-bottom">
+                                <div class="fw-bold">@m.Name <span class="muted small">(@m.Email)</span></div>
+                                <div class="muted">@m.Message</div>
+                                <div class="mt-1">
+                                    @if (m.Handled)
+                                    {
+                                        <span class="badge bg-success">Handled</span>
+                                    }
+                                    else
+                                    {
+                                        <form method="post" asp-action="MarkHandled" style="display:inline">
+                                            <input type="hidden" name="id" value="@m.Id" />
+                                            <button class="btn btn-sm btn-warning">Mark handled</button>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Admin quick sender -->
+        <div class="card p-3 mt-3">
+            <h5>Send Admin Message (broadcast)</h5>
+            <div class="input-group">
+                <input id="adminMsg" class="form-control" placeholder="Message to users..." />
+                <button id="adminSendBtn" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+        const labels = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(labels));
+        const leadSeries = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(leadSeries));
+        const contactSeries = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(contactSeries));
+
+        var options = {
+            chart: {
+                type: 'line',
+                height: 260,
+                toolbar: { show: false },
+                animations: { enabled: true },
+                foreColor: '#cfeff6',
+            },
+            series: [
+                {
+                    name: 'Leads',
+                    data: leadSeries,
+                },
+                {
+                    name: 'Contacts',
+                    data: contactSeries,
+                }
+            ],
+            xaxis: {
+                categories: labels,
+                labels: { rotate: -45 },
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 3
+            },
+            colors: ['#00f0ff', '#0077ff'],
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 0.4,
+                    opacityFrom: 0.4,
+                    opacityTo: 0.05,
+                }
+            },
+            grid: { borderColor: "#222" }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#activityChart"), options);
+        chart.render();
+    </script>
+
+    <!-- SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script>
+        (function(){
+            const btn = document.getElementById("adminSendBtn");
+            const input = document.getElementById("adminMsg");
+
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("/chatHub")
+                .withAutomaticReconnect()
+                .build();
+
+            connection.start();
+
+            function sendAdmin() {
+                const text = input.value.trim();
+                if (!text) return;
+                connection.invoke("SendMessage", "admin", text);
+                input.value = "";
+            }
+
+            btn.addEventListener('click', sendAdmin);
+            input.addEventListener('keydown', (e)=> { if (e.key === 'Enter') sendAdmin(); });
+        })();
+    </script>
+}
